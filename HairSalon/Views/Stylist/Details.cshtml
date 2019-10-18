@@ -1,0 +1,17 @@
+@using HairSalon.Models;
+@model HairSalon.Models.Stylist;
+@{
+    ViewData["Title"] = @Model.Name;
+    Layout = "_Layout";
+}
+
+<h1>@Model.Name</h1>
+<h4>@Model.Details</h4>
+<ul>
+    @foreach(Client client in Model.Clients)
+    {
+        <li>@Html.ActionLink($"{client.ClientName}", "Details", "Client",new { id = client.ClientId })</li>
+    }
+</ul>
+
+<p>@Html.ActionLink("Add Client", "Create", "Client", new {id = Model.StylistId })</p>
