@@ -1,0 +1,15 @@
+body {
+    /* background-color: aquamarine; */
+    background-image: url(../img/background.jpg);
+    margin: 0;
+    background-repeat:no-repeat;
+    background-size:cover;
+    font-family: 'Graduate', cursive;
+
+}
+
+a {
+  color: darkblue;
+  font-weight: 400;
+  background: white;
+}

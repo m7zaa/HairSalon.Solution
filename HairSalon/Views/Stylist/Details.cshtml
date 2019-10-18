@@ -18,7 +18,7 @@
         <ul>
             @foreach(Client client in Model.Clients)
             {
-                <li>@Html.ActionLink($"{client.Name}", "Details", "Client",new { id = client.ClientId })| @Html.ActionLink("Remove", "Delete", "Client", new  { id = client.ClientId })</li>
+                <li>@client.Name @Html.ActionLink("Remove", "Delete", "Client", new  { id = client.ClientId })</li>
             }
         </ul>
     }

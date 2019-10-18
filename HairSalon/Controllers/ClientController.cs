@@ -3,7 +3,6 @@ using HairSalon.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System;
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -67,8 +66,7 @@ namespace HairSalon.Controllers
             int stylistId = thisClient.StylistId;
             _db.Clients.Remove(thisClient);
             _db.SaveChanges();
-            // Where to go?
-            return RedirectToAction("Details", "Stylist", new { id = @ViewBag.ClientId });
+            return RedirectToAction("Index", "Stylist");
         }
     }
 }
