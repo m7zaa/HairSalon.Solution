@@ -25,19 +25,19 @@ namespace HairSalon.Controllers
         }
 
 
-        [HttpGet("/Client/Create/{stylistId}")]
-        public ActionResult Create(int stylistId)
+        [HttpGet("/Client/Create")]
+        public ActionResult Create()
         {
-            ViewBag.StylistId = stylistId;
+            ViewBag.StylistId = new SelectList(_db.Stylists, "StylistId", "Name");
             return View();
         }
 
-        // @*[HttpGet("Stylist/{id}/Client/Create, Name="StylistClient")]
-        // public ActionResult Create(int id)
-        // {
-        //     ViewBag.StylistId = new SelectList(new List<Stylist> { _db.Stylists.FirstOrDefault(stylist => stylist.StylistId == id) }, "StylistId", "Name");
-        //     return View();
-        // }*@
+        [HttpGet("Stylist/{id}/Client/Create", Name="StylistClient")]
+        public ActionResult Create(int id)
+        {
+            ViewBag.StylistId = new SelectList(new List<Stylist> { _db.Stylists.FirstOrDefault(stylist => stylist.StylistId == id) }, "StylistId", "Name");
+            return View();
+        }
 
         public ActionResult Create(Client client)
         {

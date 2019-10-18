@@ -9,6 +9,8 @@
 <h1>Add Client</h1>
 @using (Html.BeginForm())
 {
+    <!-- <input type="hidden" id="StylistId" name="StylistId" value="@ViewBag.StylistId" /> -->
+
     <div class="form-group">
         @Html.LabelFor(model => model.Name)
         @Html.TextBoxFor(model => model.Name)
