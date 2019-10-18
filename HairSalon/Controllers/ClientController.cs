@@ -4,7 +4,6 @@ using HairSalon.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System;
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -21,7 +20,7 @@ namespace HairSalon.Controllers
 
         public ActionResult Index()
         {
-            List<Stylist> model = _db.Stylists.ToList();
+            List<Client> model = _db.Clients.Include(clients => clients.Stylist).ToList();
             return View(model);
         }
 
@@ -29,7 +28,7 @@ namespace HairSalon.Controllers
 
 
 
-        [HttpGet("/Client/Create")]
+        // [HttpGet("/Client/Create")]
         public ActionResult Create()
         {
             ViewBag.StylistId = new SelectList(_db.Stylists, "StylistId", "Name");
@@ -37,19 +36,20 @@ namespace HairSalon.Controllers
 
         }
 
-        [HttpGet("/Stylist/{id}/Client/Create", Name = "StylistClient")]
-        public ActionResult Create(int id)
-        {
-            ViewBag.StylistId = new SelectList(new List<Stylist> { _db.Stylists.FirstOrDefault(stylist => stylist.StylistId == id) }, "StylistId", "Name");
-            return View();
-        }
+        // @*[HttpGet("/Stylist/{id}/Client/Create", Name = "StylistClient")]
+        // public ActionResult Create(int id)
+        // {
+        //     ViewBag.StylistId = new SelectList(new List<Stylist> { _db.Stylists.FirstOrDefault(stylist => stylist.StylistId == id) }, "StylistId", "Name");
+        //     return View();
+        // }*@
 
 
 
 
 
 
-        [HttpPost("/Client/Create")]
+        // [HttpPost("/Client/Create")]
+        [HttpPost]
         public ActionResult Create(Client client)
         {
             _db.Clients.Add(client);
@@ -58,20 +58,20 @@ namespace HairSalon.Controllers
         }
 
 
-        [HttpPost("/Stylist/{stylistId}/Client/Create")]
-        public ActionResult Create(int stylistId, Client client)
-        {
-            _db.Clients.Add(client);
-            _db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        // @*[HttpPost("/Stylist/{stylistId}/Client/Create")]
+        // public ActionResult Create(int stylistId, Client client)
+        // {
+        //     _db.Clients.Add(client);
+        //     _db.SaveChanges();
+        //     return RedirectToAction("Index");
+        // }*@
 
 
 
         //changed stylist => stylist.StylistId == id) from client
         public ActionResult Details(int id)
         {
-            Client thisClient = _db.Clients.Include(client => client.Stylist).FirstOrDefault(stylist => stylist.StylistId == id);
+            Client thisClient = _db.Clients.FirstOrDefault(clients => clients.ClientId == id);
             return View(thisClient);
         }
 
