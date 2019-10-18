@@ -36,7 +36,7 @@ namespace HairSalon.Controllers
             return View();
 
         }
-        
+
         [HttpGet("/Stylist/{id}/Client/Create", Name = "StylistClient")]
         public ActionResult Create(int id)
         {
@@ -68,10 +68,10 @@ namespace HairSalon.Controllers
 
 
 
-
+        //changed stylist => stylist.StylistId == id) from client
         public ActionResult Details(int id)
         {
-            Client thisClient = _db.Clients.Include(client => client.Stylist).FirstOrDefault(client => client.ClientId == id);
+            Client thisClient = _db.Clients.Include(client => client.Stylist).FirstOrDefault(stylist => stylist.StylistId == id);
             return View(thisClient);
         }
 
