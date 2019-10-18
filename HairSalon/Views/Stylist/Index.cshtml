@@ -1,6 +1,6 @@
-  
 @{
-  Layout = "_Layout";
+    ViewData["Title"] = "Stylists";
+    Layout = "_Layout";
 }
 <h1>Stylists</h1>
 
@@ -9,8 +9,8 @@
     <ul>
 @foreach(Stylist stylist in Model)
 {
-    <li>@Html.ActionLink($"{@stylist.Name}", "Details", new  { id = stylist.StylistId })</li>
+    <li>@Html.ActionLink($"{@stylist.Name}", "Details", new  { id = stylist.StylistId }) | @Html.ActionLink("Remove", "Delete", new  { id = stylist.StylistId })</li>
 }
 </ul>
 
-<p>@Html.ActionLink("Add Stylist", "Create")</p>
+<p>Add Stylist @Html.ActionLink("here", "Create")!</p>

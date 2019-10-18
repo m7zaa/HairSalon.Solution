@@ -1,11 +1,9 @@
-@{
-  Layout = "_Layout";
-}
-
-@model HairSalon.Models.Stylist;
-
-
 @using HairSalon.Models;
+@model HairSalon.Models.Stylist;
+@{
+    ViewData["Title"] = @Model.Name;
+    Layout = "_Layout";
+}
 
 <h1>@Model.Name</h1>
 <h4>@Model.Details</h4>
@@ -16,8 +14,4 @@
     }
 </ul>
 
-
-<p>@Html.RouteLink("Add1 Client", "StylistClient", new {id = Model.StylistId })</p>
 <p>@Html.ActionLink("Add Client", "Create", "Client", new {id = Model.StylistId })</p>
-<p>@Html.ActionLink("Add Client", "Create", "Client")</p>
-<p>@Html.ActionLink("See Clients", "Index", "Client")</p>

@@ -1,12 +1,10 @@
 @{
-  Layout = "_Layout";
+    ViewData["Title"] = "Home Page";
+    Layout = "_Layout";
+
 }
-
-
-
+@using HairSalon.Models;
 @model HairSalon.Models.Client;
 
 
-
 <h1>Client Details</h1>
-<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
