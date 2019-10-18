@@ -1,5 +1,15 @@
+@{
+  ViewData["Title"] = "Remove Client";
+  Layout = "_Layout";
+}
 
-@using HairSalon.Models;
 @model HairSalon.Models.Client;
 
-<h1>Client Delete</h1>
+<h2>Are you sure you want to remove this client?</h2>
+
+@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)
+@using (Html.BeginForm())
+{
+    <input type="submit" value="Remove" />
+}
+@Html.ActionLink("Back to List", "Index")
