@@ -1,1 +1,18 @@
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_Layout";
+
+}
+@using HairSalon.Models;
+@model HairSalon.Models.Client;
+
 <h1>Add Client</h1>
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.ClientName)
+        @Html.TextBoxFor(model => model.ClientName)
+    </div>
+
+    <input type="submit" value="Add New Client" />
+}
