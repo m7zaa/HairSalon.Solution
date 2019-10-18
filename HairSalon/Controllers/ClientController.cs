@@ -25,12 +25,12 @@ namespace HairSalon.Controllers
         }
 
 
-        [HttpGet("/Client/Create")]
-        public ActionResult Create()
-        {
-            ViewBag.StylistId = new SelectList(_db.Stylists, "StylistId", "Name");
-            return View();
-        }
+        // [HttpGet("/Client/Create")]
+        // public ActionResult Create()
+        // {
+        //     ViewBag.StylistId = new SelectList(_db.Stylists, "StylistId", "Name");
+        //     return View();
+        // }
 
         [HttpGet("Stylist/{id}/Client/Create", Name="StylistClient")]
         public ActionResult Create(int id)
@@ -39,20 +39,20 @@ namespace HairSalon.Controllers
             return View();
         }
 
-        public ActionResult Create(Client client)
-        {
-            _db.Clients.Add(client);
-            _db.SaveChanges();
-            int id = client.StylistId;
-            return RedirectToAction("Details", "Stylist", id);
-        }
+        // public ActionResult Create(Client client)
+        // {
+        //     _db.Clients.Add(client);
+        //     _db.SaveChanges();
+        //     int id = client.StylistId;
+        //     return RedirectToAction("Details", "Stylist", id);
+        // }
 
         [HttpPost("/Stylist/{stylistId}/Client/Create")]
         public ActionResult Create(int stylistId, Client client)
         {
             _db.Clients.Add(client);
             _db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Stylist");
         }
 
 
