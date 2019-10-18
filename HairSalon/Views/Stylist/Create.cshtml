@@ -1,0 +1,21 @@
+@{
+    ViewData["Title"] = "Add Stylist";
+    Layout = "_Layout";
+}
+
+@model HairSalon.Models.Stylist;
+<h1>Add a stylist</h1>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        @Html.TextBoxFor(model => model.Name)
+        @Html.LabelFor(model => model.Details)
+        @Html.TextBoxFor(model => model.Details)
+    </div>
+
+    <input type="submit" value="Add New Stylist" />
+}
+
+<p>@Html.ActionLink("Back to All Stylists", "Index")</p>
