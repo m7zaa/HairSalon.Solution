@@ -21,32 +21,42 @@ namespace HairSalon.Controllers
 
         public ActionResult Index()
         {
-            List<Client> model = _db.Clients.Include(client => client.Stylist).ToList();
+            List<Stylist> model = _db.Stylists.ToList();
             return View(model);
         }
 
 
-        [HttpGet("/Client/Create/{stylistId}")]
-        public ActionResult Create(int stylistId)
+
+
+
+        [HttpGet("/Client/Create")]
+        public ActionResult Create()
         {
-            ViewBag.StylistId = stylistId;
+            ViewBag.StylistId = new SelectList(_db.Stylists, "StylistId", "Name");
+            return View();
+
+        }
+        
+        [HttpGet("/Stylist/{id}/Client/Create", Name = "StylistClient")]
+        public ActionResult Create(int id)
+        {
+            ViewBag.StylistId = new SelectList(new List<Stylist> { _db.Stylists.FirstOrDefault(stylist => stylist.StylistId == id) }, "StylistId", "Name");
             return View();
         }
 
-        // @*[HttpGet("Stylist/{id}/Client/Create, Name="StylistClient")]
-        // public ActionResult Create(int id)
-        // {
-        //     ViewBag.StylistId = new SelectList(new List<Stylist> { _db.Stylists.FirstOrDefault(stylist => stylist.StylistId == id) }, "StylistId", "Name");
-        //     return View();
-        // }*@
 
+
+
+
+
+        [HttpPost("/Client/Create")]
         public ActionResult Create(Client client)
         {
             _db.Clients.Add(client);
             _db.SaveChanges();
-            int id = client.StylistId;
-            return RedirectToAction("Details", "Stylist", id);
+            return RedirectToAction("Index");
         }
+
 
         [HttpPost("/Stylist/{stylistId}/Client/Create")]
         public ActionResult Create(int stylistId, Client client)
@@ -59,7 +69,11 @@ namespace HairSalon.Controllers
 
 
 
-
+        public ActionResult Details(int id)
+        {
+            Client thisClient = _db.Clients.Include(client => client.Stylist).FirstOrDefault(client => client.ClientId == id);
+            return View(thisClient);
+        }
 
 
 
