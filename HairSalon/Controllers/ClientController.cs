@@ -67,7 +67,8 @@ namespace HairSalon.Controllers
             int stylistId = thisClient.StylistId;
             _db.Clients.Remove(thisClient);
             _db.SaveChanges();
-            return RedirectToAction("Details", "Stylist", stylistId);
+            // Where to go?
+            return RedirectToAction("Details", "Stylist", new { id = @ViewBag.ClientId });
         }
     }
 }
